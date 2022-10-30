@@ -5,23 +5,21 @@ import parts from "../../../assets/images/about_us/parts.jpg";
 const About = () => {
   return (
     <section className="my-20">
-      <div className="container flex w-full mx-auto lg:flex-row flex-col">
+      <div className="container flex items-center w-full mx-auto lg:flex-row flex-col">
         <div className="w-1/2 relative">
-          <img
-            src={person}
-            alt=""
-            className="w-full lg:w-4/5 absolute rounded-xl"
-          />
+          <img src={person} alt="" className="w-full lg:w-4/5 rounded-xl" />
 
           <img
             src={parts}
             alt=""
-            className="w-full lg:w-3/5 absolute right-6 bottom-0 border-8 border-white rounded-xl"
+            className="w-full lg:w-3/5 absolute right-6 top-32 border-8 border-white rounded-xl"
           />
         </div>
 
-        <div className="w-1/2 flex flex-col justify-center space-y-4">
-          <h3 className="text-xl lg:text-3xl font-bold">About Us</h3>
+        <div className="w-1/2 flex flex-col justify-center space-y-3">
+          <h3 className="text-xl lg:text-3xl font-bold text-orange-500">
+            About Us
+          </h3>
           <h3 className="text-3xl lg:text-5xl font-bold">
             We are qualified <br /> & of experience <br /> in this field
           </h3>
