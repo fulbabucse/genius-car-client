@@ -96,7 +96,7 @@ const Header = () => {
                 <FaBriefcase></FaBriefcase>
               </div>
               <Link>
-                <button className="btn btn-sm btn-outline btn-secondary rounded-sm transition-colors duration-500 normal-case text-lg px-4">
+                <button className="btn btn-outline btn-secondary rounded-sm normal-case text-lg px-4">
                   Appointments
                 </button>
               </Link>

@@ -146,11 +146,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
-                  </button>
                   <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
                     Discover More
+                  </button>
+                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
+                    Latest Project
                   </button>
                 </div>
               </div>
@@ -174,11 +174,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
-                  </button>
                   <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
                     Discover More
+                  </button>
+                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
+                    Latest Project
                   </button>
                 </div>
               </div>
@@ -202,11 +202,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
-                  </button>
                   <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
                     Discover More
+                  </button>
+                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
+                    Latest Project
                   </button>
                 </div>
               </div>
@@ -230,11 +230,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
-                  </button>
                   <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
                     Discover More
+                  </button>
+                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
+                    Latest Project
                   </button>
                 </div>
               </div>
@@ -258,11 +258,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
-                  </button>
                   <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
                     Discover More
+                  </button>
+                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
+                    Latest Project
                   </button>
                 </div>
               </div>
@@ -285,11 +285,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
-                  </button>
                   <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
                     Discover More
+                  </button>
+                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
+                    Latest Project
                   </button>
                 </div>
               </div>
