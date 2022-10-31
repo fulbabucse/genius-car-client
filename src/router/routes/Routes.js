@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddServices from "../../Dashboard/AddServices/AddServices";
+import DashboardHome from "../../Dashboard/DashboardHome/DashboardHome";
 import Dashboard from "../../layouts/Dashboard";
 import Root from "../../layouts/Root";
 import About from "../../pages/About/About";
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "dashboard",
     element: <Dashboard></Dashboard>,
+    children: [
+      { path: "home", element: <DashboardHome></DashboardHome> },
+      { path: "/dashboard/add-service", element: <AddServices></AddServices> },
+    ],
   },
 ]);
 
