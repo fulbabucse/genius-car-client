@@ -1,5 +1,6 @@
 import React from "react";
 import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
+import logInLogo from "../../../assets/images/login/login.svg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -7,17 +8,16 @@ const Login = () => {
     e.preventDefault();
   };
   return (
-    <section className="h-screen">
+    <section className="">
       <div className="container px-6 py-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-              className="w-full"
-              alt="Phone image"
-            />
+            <img src={logInLogo} className="w-3/4" alt="Phone image" />
           </div>
-          <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
+          <div className="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
+            <h2 className="text-center text-3xl font-bold text-gray-700 uppercase mb-4">
+              Log In
+            </h2>
             <form onSubmit={handleUserLogIn}>
               <div className="mb-6">
                 <input
@@ -66,7 +66,7 @@ const Login = () => {
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >
-                Sign in
+                Log In
               </button>
             </form>
             <div>
