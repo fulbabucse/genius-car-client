@@ -5,15 +5,15 @@ const ServicesCard = ({ service }) => {
   const { title, img, price } = service;
   return (
     <div>
-      <div class="rounded-md shadow-lg bg-white h-full">
-        <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-          <img class="rounded-t-lg w-full h-60" src={img} alt={title} />
+      <div className="rounded-md shadow-lg bg-white h-full">
+        <a data-mdb-ripple="true" data-mdb-ripple-color="orange">
+          <img className="rounded-md w-full h-56" src={img} alt={title} />
         </a>
-        <div class="p-4">
-          <h5 class="text-gray-900 text-xl font-medium mb-2">{title}</h5>
+        <div className="p-4">
+          <h5 className="text-gray-800 text-xl font-bold mb-2">{title}</h5>
 
-          <div className="text-orange-600 text-lg flex items-center justify-between">
-            <p class="font-semibold">Price: ${price}</p>
+          <div className="text-purple-600 text-lg flex items-center justify-between">
+            <p className="font-semibold">Price: ${price}</p>
             <button type="button">
               <FaArrowRight></FaArrowRight>
             </button>

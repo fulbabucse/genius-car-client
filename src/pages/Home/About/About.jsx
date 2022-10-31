@@ -17,10 +17,10 @@ const About = () => {
         </div>
 
         <div className="w-1/2 flex flex-col justify-center space-y-3">
-          <h3 className="text-xl lg:text-3xl font-bold text-orange-500">
+          <h3 className="text-xl lg:text-3xl font-bold text-purple-600">
             About Us
           </h3>
-          <h3 className="text-3xl lg:text-5xl font-bold">
+          <h3 className="text-3xl lg:text-5xl font-bold text-gray-800">
             We are qualified <br /> & of experience <br /> in this field
           </h3>
           <p className="text-lg">
@@ -35,7 +35,12 @@ const About = () => {
             believable.
           </p>
           <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-            <button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+            <button
+              type="button"
+              data-mdb-ripple="true"
+              data-mdb-ripple-color="light"
+              class="inline-block px-6 py-3 bg-purple-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-lg hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+            >
               Get More Info
             </button>
           </div>
