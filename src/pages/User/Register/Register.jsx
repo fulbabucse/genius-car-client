@@ -1,11 +1,39 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import RegisterLogo from "../../../assets/images/login/login.svg";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const handleUserLogIn = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const photoURL = form.photoLink.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        handleUpdateUser(name, photoURL);
+        form.reset();
+      })
+      .catch((err) => console.error(err));
   };
+
+  const handleUpdateUser = (name, photoLink) => {
+    const userInfo = {
+      displayName: name,
+      photoURL: photoLink,
+    };
+    updateUserProfile(userInfo)
+      .then((res) => {})
+      .catch((err) => console.error(err));
+  };
+
   return (
     <section className="h-screen">
       <div className="container px-6 py-6 h-full">
@@ -21,6 +49,7 @@ const Register = () => {
               <div>
                 <input
                   type="text"
+                  name="name"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Name"
                   required
@@ -30,6 +59,7 @@ const Register = () => {
               <div>
                 <input
                   type="text"
+                  name="photoLink"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Photo URL"
                   required
@@ -39,6 +69,7 @@ const Register = () => {
               <div>
                 <input
                   type="email"
+                  name="email"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Email address"
                   required
@@ -48,6 +79,7 @@ const Register = () => {
               <div>
                 <input
                   type="password"
+                  name="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Password"
                   required
@@ -77,7 +109,7 @@ const Register = () => {
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >
-                Sign in
+                Register
               </button>
             </form>
             <div>

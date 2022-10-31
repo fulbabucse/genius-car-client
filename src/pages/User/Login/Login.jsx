@@ -2,10 +2,24 @@ import React from "react";
 import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
 import logo from "../../../assets/images/login/register.svg";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
   const handleUserLogIn = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signInUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        console.log(user);
+        form.reset();
+      })
+      .catch((err) => console.error(err));
   };
   return (
     <section className="">
@@ -22,6 +36,7 @@ const Login = () => {
               <div className="mb-6">
                 <input
                   type="text"
+                  name="email"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Email address"
                   required
@@ -31,6 +46,7 @@ const Login = () => {
               <div className="mb-3">
                 <input
                   type="password"
+                  name="password"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Password"
                   required

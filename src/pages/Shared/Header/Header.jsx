@@ -7,8 +7,15 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userSignOut } = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
+
+  const handleUserSignOut = () => {
+    userSignOut()
+      .then((res) => {})
+      .catch((err) => console.error(err));
+  };
+
   return (
     <nav className="bg-white px-3 lg:px-0 dark:bg-gray-800">
       <div className="container py-5 mx-auto">
@@ -94,62 +101,71 @@ const Header = () => {
                 <FaBriefcase></FaBriefcase>
               </div>
               <div>
-                <div class="flex justify-center">
-                  <div>
-                    <div class="dropdown relative">
-                      <button
-                        type="button"
-                        id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                      >
-                        <img
-                          className="w-12 h-12 rounded-full"
-                          src={UserThumb}
-                          alt="User Picture"
-                        />
-                      </button>
-                      <ul
-                        class=" dropdown-menu px-2 min-w-max absolute hidden bg-white text-base z-50 space-y-2 py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none"
-                        aria-labelledby="dropdownMenuButton1"
-                      >
-                        <li>
-                          <Link
-                            to="/profile"
-                            class="dropdown-item rounded-md text-md py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                          >
-                            {user?.displayName}
-                          </Link>
-                        </li>
+                <div className="flex justify-center">
+                  <div className="dropdown relative">
+                    <button
+                      type="button"
+                      id="dropdownMenuButton1"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <img
+                        className="w-10 h-10 rounded-full"
+                        src={user?.photoURL || UserThumb}
+                        alt="User Picture"
+                      />
+                    </button>
+                    <ul
+                      className=" dropdown-menu px-2 min-w-max absolute hidden bg-white text-base z-50 space-y-2 py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none"
+                      aria-labelledby="dropdownMenuButton1"
+                    >
+                      <li>
+                        <Link
+                          to="/profile"
+                          className="dropdown-item rounded-md text-md py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                        >
+                          {user?.displayName || "User Profile"}
+                        </Link>
+                      </li>
 
-                        <li>
+                      <li>
+                        {user?.uid ? (
+                          <button
+                            onClick={handleUserSignOut}
+                            className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold px-4 rounded-md  text-lg text-opacity-90 hover:text-opacity-100 w-full"
+                          >
+                            Log Out
+                          </button>
+                        ) : (
                           <Link
                             to="/login"
-                            class="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
+                            className="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
                           >
                             <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold px-4 rounded-md  text-lg text-opacity-90 hover:text-opacity-100 w-full">
                               Log In
                             </button>
                           </Link>
-                        </li>
+                        )}
+                      </li>
 
+                      {!user?.uid && (
                         <li>
                           <Link
                             to="/register"
-                            class="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
+                            className="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
                           >
                             <button
                               type="button"
                               data-mdb-ripple="true"
                               data-mdb-ripple-color="light"
-                              class="inline-block px-4 py-1 bg-blue-600 text-white font-medium text-lg leading-tight w-full rounded-md shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out normal-case"
+                              className="inline-block px-4 py-1 bg-blue-600 text-white font-medium text-lg leading-tight w-full rounded-md shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out normal-case"
                             >
                               Register
                             </button>
                           </Link>
                         </li>
-                      </ul>
-                    </div>
+                      )}
+                    </ul>
                   </div>
                 </div>
               </div>
