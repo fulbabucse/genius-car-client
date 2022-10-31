@@ -1,42 +1,42 @@
 import React from "react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
 const AddProducts = () => {
-  const [services, setAddServices] = useState({});
+  const storedProduct = useLoaderData();
+  const [updateProducts, setUpdateProducts] = useState(storedProduct);
 
-  const handleServiceBlue = (e) => {
+  const handleProductUpdateChange = (e) => {
     const field = e.target.name;
     const value = e.target.value;
-    const newService = { ...services };
-    newService[field] = value;
-    setAddServices(newService);
+    const newProduct = { ...updateProducts };
+    newProduct[field] = value;
+    setUpdateProducts(newProduct);
   };
 
-  const handleAddServicesForm = (e) => {
+  const handleProductUpdate = (e) => {
     e.preventDefault();
-    console.log(services);
-    e.target.reset();
-
-    fetch("http://localhost:5000/products", {
-      method: "POST",
+    fetch(`http://localhost:5000/products/${updateProducts._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(services),
+      body: JSON.stringify(updateProducts),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
-          toast.success("Products Add successfully");
-        }
-      })
-      .catch((err) => console.error(err));
+        setUpdateProducts(data);
+        toast.success("Product updates successfully");
+      });
   };
   return (
     <div className="h-screen">
       <div className="p-6 rounded-lg shadow-lg bg-white max-w-xl mx-auto lg:mt-10">
-        <form onSubmit={handleAddServicesForm}>
+        <h2 className="text-3xl font-bold mb-5 text-center text-gray-700">
+          Updates Product
+        </h2>
+        <form onSubmit={handleProductUpdate}>
           <div className="grid grid-cols-2 gap-4">
             <div className="form-group mb-6">
               <input
@@ -60,7 +60,8 @@ const AddProducts = () => {
                 aria-describedby="emailHelp123"
                 placeholder="Product Name"
                 name="name"
-                onBlur={handleServiceBlue}
+                defaultValue={updateProducts.name}
+                onChange={handleProductUpdateChange}
               />
             </div>
             <div className="form-group mb-6">
@@ -85,7 +86,8 @@ const AddProducts = () => {
                 aria-describedby="emailHelp124"
                 placeholder="Product Price"
                 name="price"
-                onBlur={handleServiceBlue}
+                defaultValue={updateProducts.price}
+                onChange={handleProductUpdateChange}
               />
             </div>
           </div>
@@ -109,7 +111,8 @@ const AddProducts = () => {
               id="exampleInput125"
               placeholder="Photo URL"
               name="image"
-              onBlur={handleServiceBlue}
+              defaultValue={updateProducts.image}
+              onChange={handleProductUpdateChange}
             />
           </div>
           <div className="form-group mb-6">
@@ -132,7 +135,8 @@ const AddProducts = () => {
               id="exampleInput126"
               placeholder="Product Type"
               name="serviceType"
-              onBlur={handleServiceBlue}
+              defaultValue={updateProducts.serviceType}
+              onChange={handleProductUpdateChange}
             />
           </div>
           <div className="form-group mb-6">
@@ -158,7 +162,8 @@ const AddProducts = () => {
               rows="3"
               placeholder="Service Descriptions"
               name="descriptions"
-              onBlur={handleServiceBlue}
+              defaultValue={updateProducts.descriptions}
+              onChange={handleProductUpdateChange}
             ></textarea>
           </div>
           <button
@@ -184,7 +189,7 @@ const AddProducts = () => {
       duration-150
       ease-in-out"
           >
-            Add Service
+            Updates Product
           </button>
         </form>
       </div>
