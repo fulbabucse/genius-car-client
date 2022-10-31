@@ -1,6 +1,6 @@
 import React from "react";
 import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
-import logInLogo from "../../../assets/images/login/login.svg";
+import logo from "../../../assets/images/login/register.svg";
 import { Link } from "react-router-dom";
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
       <div className="container px-6 py-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img src={logInLogo} className="w-3/4" alt="Phone image" />
+            <img src={logo} className="w-full" alt="Phone image" />
           </div>
           <div className="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
             <h2 className="text-center text-3xl font-bold text-gray-700 uppercase mb-4">

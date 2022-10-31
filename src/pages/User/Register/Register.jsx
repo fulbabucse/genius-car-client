@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RegisterLogo from "../../../assets/images/login/register.svg";
+import RegisterLogo from "../../../assets/images/login/login.svg";
 
 const Register = () => {
   const handleUserLogIn = (e) => {
@@ -10,8 +10,8 @@ const Register = () => {
     <section className="h-screen">
       <div className="container px-6 py-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
-          <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img src={RegisterLogo} className="w-full" alt="Register image" />
+          <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0 flex justify-center">
+            <img src={RegisterLogo} className="w-3/5" alt="Register image" />
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
             <h2 className="text-center text-3xl font-bold text-gray-700 uppercase mb-4">
