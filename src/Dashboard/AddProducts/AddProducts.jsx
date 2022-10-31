@@ -1,7 +1,8 @@
 import React from "react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
-const AddServices = () => {
+const AddProducts = () => {
   const [services, setAddServices] = useState({});
 
   const handleServiceBlue = (e) => {
@@ -16,6 +17,21 @@ const AddServices = () => {
     e.preventDefault();
     console.log(services);
     e.target.reset();
+
+    fetch("http://localhost:5000/products", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(services),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Products Add successfully");
+        }
+      })
+      .catch((err) => console.error(err));
   };
   return (
     <div className="h-screen">
@@ -42,7 +58,7 @@ const AddServices = () => {
           focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                 id="exampleInput123"
                 aria-describedby="emailHelp123"
-                placeholder="Service Name"
+                placeholder="Product Name"
                 name="name"
                 onBlur={handleServiceBlue}
               />
@@ -67,7 +83,7 @@ const AddServices = () => {
           focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                 id="exampleInput124"
                 aria-describedby="emailHelp124"
-                placeholder="Service Price"
+                placeholder="Product Price"
                 name="price"
                 onBlur={handleServiceBlue}
               />
@@ -114,7 +130,7 @@ const AddServices = () => {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
               id="exampleInput126"
-              placeholder="Service Type"
+              placeholder="Product Type"
               name="serviceType"
               onBlur={handleServiceBlue}
             />
@@ -176,4 +192,4 @@ const AddServices = () => {
   );
 };
 
-export default AddServices;
+export default AddProducts;
