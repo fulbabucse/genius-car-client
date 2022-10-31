@@ -3,11 +3,14 @@ import { FaTh, FaTimes, FaBriefcase } from "react-icons/fa";
 import logo from "../../../assets/logo.svg";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
   return (
-    <nav className="bg-white dark:bg-gray-800">
+    <nav className="bg-white px-3 lg:px-0 dark:bg-gray-800">
       <div className="container py-5 mx-auto">
         <div className="lg:flex lg:items-center">
           <div className="flex items-center justify-between">
@@ -61,13 +64,6 @@ const Header = () => {
                 Contact
               </Link>
 
-              <Link
-                to="/login"
-                className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-              >
-                Log In
-              </Link>
-
               <div className="relative mt-4 lg:mt-0 lg:mx-4">
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg
@@ -98,11 +94,64 @@ const Header = () => {
                 <FaBriefcase></FaBriefcase>
               </div>
               <div>
-                <img
-                  className="w-12 h-12 rounded-full"
-                  src={UserThumb}
-                  alt="User Picture"
-                />
+                <div class="flex justify-center">
+                  <div>
+                    <div class="dropdown relative">
+                      <button
+                        type="button"
+                        id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <img
+                          className="w-12 h-12 rounded-full"
+                          src={UserThumb}
+                          alt="User Picture"
+                        />
+                      </button>
+                      <ul
+                        class=" dropdown-menu px-2 min-w-max absolute hidden bg-white text-base z-50 space-y-2 py-2 list-none text-left rounded-lg shadow-lg mt-1 m-0 bg-clip-padding border-none"
+                        aria-labelledby="dropdownMenuButton1"
+                      >
+                        <li>
+                          <Link
+                            to="/profile"
+                            class="dropdown-item rounded-md text-md py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
+                          >
+                            {user?.displayName}
+                          </Link>
+                        </li>
+
+                        <li>
+                          <Link
+                            to="/login"
+                            class="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
+                          >
+                            <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold px-4 rounded-md  text-lg text-opacity-90 hover:text-opacity-100 w-full">
+                              Log In
+                            </button>
+                          </Link>
+                        </li>
+
+                        <li>
+                          <Link
+                            to="/register"
+                            class="text-sm font-normal block w-full whitespace-nowrap bg-transparent"
+                          >
+                            <button
+                              type="button"
+                              data-mdb-ripple="true"
+                              data-mdb-ripple-color="light"
+                              class="inline-block px-4 py-1 bg-blue-600 text-white font-medium text-lg leading-tight w-full rounded-md shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out normal-case"
+                            >
+                              Register
+                            </button>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <Link>
                 <button
