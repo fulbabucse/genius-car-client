@@ -9,7 +9,7 @@ const ServicesCard = ({ service }) => {
         <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
           <img class="rounded-t-lg w-full h-60" src={img} alt={title} />
         </a>
-        <div class="p-6">
+        <div class="p-4">
           <h5 class="text-gray-900 text-xl font-medium mb-2">{title}</h5>
 
           <div className="text-orange-600 text-lg flex items-center justify-between">

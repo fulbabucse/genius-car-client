@@ -35,7 +35,7 @@ const About = () => {
             believable.
           </p>
           <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-            <button className="btn btn-outline btn-secondary rounded-sm normal-case text-lg">
+            <button className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
               Get More Info
             </button>
           </div>

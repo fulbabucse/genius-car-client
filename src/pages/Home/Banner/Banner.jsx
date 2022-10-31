@@ -146,11 +146,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -174,11 +174,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -202,11 +202,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -230,11 +230,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -258,11 +258,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                    Latest Projects
                   </button>
                 </div>
               </div>
@@ -285,11 +285,11 @@ const Banner = () => {
                   majority have suffered alteration in some form
                 </p>
                 <div className="flex gap-3">
-                  <button className="btn btn-secondary rounded-sm normal-case tracking-wider text-lg">
+                  <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                     Discover More
                   </button>
-                  <button className="btn btn-secondary btn-outline rounded-sm normal-case tracking-wider text-lg">
-                    Latest Project
+                  <button className="border border-white text-white hover:bg-pink-600 hover:text-white hover:border-pink-500 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg">
+                    Latest Projects
                   </button>
                 </div>
               </div>

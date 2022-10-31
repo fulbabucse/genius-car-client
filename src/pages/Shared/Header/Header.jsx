@@ -7,7 +7,7 @@ const Header = () => {
   const [navbar, setNavbar] = useState(false);
   return (
     <nav className="bg-white dark:bg-gray-800">
-      <div className="container px-4 py-5 mx-auto">
+      <div className="container py-5 mx-auto">
         <div className="lg:flex lg:items-center">
           <div className="flex items-center justify-between">
             <div>
@@ -96,7 +96,7 @@ const Header = () => {
                 <FaBriefcase></FaBriefcase>
               </div>
               <Link>
-                <button className="btn btn-outline btn-secondary rounded-sm normal-case text-lg px-4">
+                <button className="border text-white border-orange-500 bg-orange-500 hover:bg-orange-600 transition-colors duration-200 font-semibold py-2 px-4 rounded-sm  text-lg text-opacity-90 hover:text-opacity-100">
                   Appointments
                 </button>
               </Link>
