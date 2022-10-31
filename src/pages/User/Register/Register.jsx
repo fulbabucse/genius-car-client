@@ -1,8 +1,7 @@
 import React from "react";
-import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Register = () => {
   const handleUserLogIn = (e) => {
     e.preventDefault();
   };
@@ -22,6 +21,15 @@ const Login = () => {
               <div className="mb-6">
                 <input
                   type="text"
+                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
+                  placeholder="Name"
+                  required
+                />
+              </div>
+
+              <div className="mb-6">
+                <input
+                  type="email"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Email address"
                   required
@@ -52,12 +60,6 @@ const Login = () => {
                     Check me out
                   </label>
                 </div>
-                <a
-                  href="#"
-                  className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                >
-                  Forgot password?
-                </a>
               </div>
 
               <button
@@ -71,47 +73,16 @@ const Login = () => {
             </form>
             <div>
               <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
-                <p className="text-center font-semibold mx-4 mb-0">OR</p>
+                <p className="text-center font-semibold mx-4">OR</p>
               </div>
 
-              <button
-                className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-amber-500"
-                role="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                <FaGoogle className="mx-1"></FaGoogle>
-                Continue with Google
-              </button>
-
-              <button
-                className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3"
-                style={{ backgroundColor: "#3b5998" }}
-                role="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                <FaFacebookF className="mx-1"></FaFacebookF>
-                Continue with Facebook
-              </button>
-
-              <button
-                className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center"
-                style={{ backgroundColor: "#55acee" }}
-                role="button"
-                data-mdb-ripple="true"
-                data-mdb-ripple-color="light"
-              >
-                <FaTwitter className="mx-1"></FaTwitter>
-                Continue with Twitter
-              </button>
-              <p className="text-md font-semibold mt-3 text-center">
-                Already have an account?
+              <p className="text-md font-semibold text-center">
+                Don't have an account?
                 <Link
-                  to="/register"
+                  to="/login"
                   className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-1"
                 >
-                  Register
+                  Log In
                 </Link>
               </p>
             </div>
@@ -122,4 +93,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
