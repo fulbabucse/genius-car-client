@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const AddProducts = () => {
   const [products, setAddProducts] = useState({});
 
-  const handleServiceBlue = (e) => {
+  const handleProductBlur = (e) => {
     const field = e.target.name;
     const value = e.target.value;
     const newService = { ...products };
@@ -13,10 +13,8 @@ const AddProducts = () => {
     setAddProducts(newService);
   };
 
-  const handleAddServicesForm = (e) => {
+  const handleAddProductsForm = (e) => {
     e.preventDefault();
-    console.log(products);
-    e.target.reset();
 
     fetch("http://localhost:5000/products", {
       method: "POST",
@@ -32,6 +30,7 @@ const AddProducts = () => {
         }
       })
       .catch((err) => console.error(err));
+    e.target.reset();
   };
   return (
     <div className="h-screen">
@@ -39,7 +38,7 @@ const AddProducts = () => {
         <h2 className="text-3xl font-bold mb-5 text-center text-gray-700 uppercase">
           Add Product
         </h2>
-        <form onSubmit={handleAddServicesForm}>
+        <form onSubmit={handleAddProductsForm}>
           <div className="grid grid-cols-2 gap-4">
             <div className="form-group mb-6">
               <input
@@ -63,7 +62,7 @@ const AddProducts = () => {
                 aria-describedby="emailHelp123"
                 placeholder="Product Name"
                 name="name"
-                onBlur={handleServiceBlue}
+                onBlur={handleProductBlur}
               />
             </div>
             <div className="form-group mb-6">
@@ -88,7 +87,7 @@ const AddProducts = () => {
                 aria-describedby="emailHelp124"
                 placeholder="Product Price"
                 name="price"
-                onBlur={handleServiceBlue}
+                onBlur={handleProductBlur}
               />
             </div>
           </div>
@@ -112,7 +111,7 @@ const AddProducts = () => {
               id="exampleInput125"
               placeholder="Photo URL"
               name="image"
-              onBlur={handleServiceBlue}
+              onBlur={handleProductBlur}
             />
           </div>
           <div className="form-group mb-6">
@@ -135,7 +134,7 @@ const AddProducts = () => {
               id="exampleInput126"
               placeholder="Product Type"
               name="serviceType"
-              onBlur={handleServiceBlue}
+              onBlur={handleProductBlur}
             />
           </div>
           <div className="form-group mb-6">
@@ -161,7 +160,7 @@ const AddProducts = () => {
               rows="3"
               placeholder="Service Descriptions"
               name="descriptions"
-              onBlur={handleServiceBlue}
+              onBlur={handleProductBlur}
             ></textarea>
           </div>
           <button
