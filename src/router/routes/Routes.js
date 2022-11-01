@@ -15,6 +15,7 @@ import UpdateService from "../../Dashboard/Services/update/UpdateService";
 import Profile from "../../pages/User/Profile/Profile";
 import Checkout from "../../pages/Checkout/Checkout";
 import Orders from "../../pages/Orders/Orders";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,14 @@ const router = createBrowserRouter([
       { path: "/", element: <Home></Home> },
       { path: "home", element: <Home></Home> },
       { path: "about", element: <About></About> },
-      { path: "orders", element: <Orders></Orders> },
+      {
+        path: "orders",
+        element: (
+          <PrivateRoute>
+            <Orders></Orders>
+          </PrivateRoute>
+        ),
+      },
       {
         path: "/checkout/:id",
         loader: ({ params }) =>

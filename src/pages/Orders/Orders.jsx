@@ -3,10 +3,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { FaTimes } from "react-icons/fa";
+// import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  //   const [displayOrders, setDisplayOrders] = useState(orders);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -15,6 +17,26 @@ const Orders = () => {
       .then((data) => setOrders(data))
       .catch((err) => console.error(err));
   }, [user?.email]);
+
+  //   const handleDeleteOrder = (order) => {
+  //     const agree = window.confirm("Are you sure delete this user");
+  //     if (agree) {
+  //       fetch(`http://localhost:5000/orders/${order._id}`, {
+  //         method: "DELETE",
+  //       })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           if (data.deletedCount > 0) {
+  //             const restOrders = displayOrders.filter(
+  //               (odr) => odr._id !== order._id
+  //             );
+  //             toast.error("Product deleted successfully");
+  //             setDisplayOrders(restOrders);
+  //           }
+  //         })
+  //         .catch((err) => console.error(err));
+  //     }
+  //   };
 
   return (
     <div className="h-screen">
