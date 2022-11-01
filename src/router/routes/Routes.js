@@ -12,6 +12,8 @@ import Update from "../../Dashboard/Products/Update/UpdateProduct";
 import AddService from "../../Dashboard/Services/AddService/AddService";
 import AllServices from "../../Dashboard/Services/AllServices/AllServices";
 import UpdateService from "../../Dashboard/Services/update/UpdateService";
+import Profile from "../../pages/User/Profile/Profile";
+import Checkout from "../../pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -21,8 +23,15 @@ const router = createBrowserRouter([
       { path: "/", element: <Home></Home> },
       { path: "home", element: <Home></Home> },
       { path: "about", element: <About></About> },
+      {
+        path: "/checkout/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/${params.id}`),
+        element: <Checkout></Checkout>,
+      },
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },
+      { path: "profile", element: <Profile></Profile> },
     ],
   },
   {
