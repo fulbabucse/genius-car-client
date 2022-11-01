@@ -98,8 +98,12 @@ const AllServices = () => {
                       <td className="text-sm text-gray-900 text-center font-light px-3 py-4 whitespace-nowrap">
                         {service.price}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-3 py-4 whitespace-nowrap">
-                        {service.image.slice(0, 40)}...
+                      <td className="text-sm text-gray-900 font-light px-3 py-1 whitespace-nowrap">
+                        <img
+                          className="w-12 h-12 rounded-md"
+                          src={service.image}
+                          alt=""
+                        />
                       </td>
 
                       <td className="text-sm text-gray-900 text-center font-light px-3 py-4 whitespace-nowrap">

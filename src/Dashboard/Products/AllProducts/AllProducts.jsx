@@ -101,8 +101,12 @@ const AllProducts = () => {
                       <td className="text-sm text-gray-900 text-center font-light px-6 py-4 whitespace-nowrap">
                         {product.price}
                       </td>
-                      <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                        {product.image.slice(0, 40)}...
+                      <td className="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
+                        <img
+                          className="w-12 h-12 rounded-md"
+                          src={product.image}
+                          alt=""
+                        />
                       </td>
 
                       <td className="text-sm text-gray-900 text-center font-light px-6 py-4 whitespace-nowrap">
