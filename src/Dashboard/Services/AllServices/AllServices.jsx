@@ -28,7 +28,7 @@ const AllServices = () => {
   return (
     <div className="h-screen">
       <h1 className="text-3xl font-bold text-center text-gray-700">
-        Total Products {services?.length}
+        Total Services {services?.length}
       </h1>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -60,7 +60,7 @@ const AllServices = () => {
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
                     >
-                      Photo URL
+                      Image
                     </th>
 
                     <th
