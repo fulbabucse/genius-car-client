@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
@@ -22,8 +23,29 @@ const Checkout = () => {
       email,
       phone,
       message,
+      image: image,
     };
-    console.log(order);
+
+    if (phone.length < 11) {
+      toast.error("Phone number at least 11 character");
+      return;
+    }
+
+    fetch("http://localhost:5000/orders", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Your orders successfully");
+          e.target.reset();
+        }
+      })
+      .catch((err) => console.error(err));
   };
   const checkoutStyles = {
     backgroundImage: `url(${image})`,

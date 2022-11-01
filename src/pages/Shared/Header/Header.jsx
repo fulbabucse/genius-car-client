@@ -64,6 +64,13 @@ const Header = () => {
               >
                 Services
               </Link>
+
+              <Link
+                to="/orders"
+                className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+              >
+                Orders
+              </Link>
               <Link
                 to="/contact"
                 className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
