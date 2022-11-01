@@ -3,12 +3,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { FaTimes } from "react-icons/fa";
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  //   const [displayOrders, setDisplayOrders] = useState(orders);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
@@ -18,25 +17,23 @@ const Orders = () => {
       .catch((err) => console.error(err));
   }, [user?.email]);
 
-  //   const handleDeleteOrder = (order) => {
-  //     const agree = window.confirm("Are you sure delete this user");
-  //     if (agree) {
-  //       fetch(`http://localhost:5000/orders/${order._id}`, {
-  //         method: "DELETE",
-  //       })
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           if (data.deletedCount > 0) {
-  //             const restOrders = displayOrders.filter(
-  //               (odr) => odr._id !== order._id
-  //             );
-  //             toast.error("Product deleted successfully");
-  //             setDisplayOrders(restOrders);
-  //           }
-  //         })
-  //         .catch((err) => console.error(err));
-  //     }
-  //   };
+  const handleDeleteOrder = (id) => {
+    const agree = window.confirm("Are you sure cancel this orders");
+    if (agree) {
+      fetch(`http://localhost:5000/orders/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const restOrders = orders.filter((odr) => odr._id !== id);
+            toast.error("Orders cancel successfully");
+            setOrders(restOrders);
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  };
 
   return (
     <div className="h-screen">
@@ -123,6 +120,7 @@ const Orders = () => {
                       <td className="text-center">
                         <button
                           type="button"
+                          onClick={() => handleDeleteOrder(order._id)}
                           data-mdb-ripple="true"
                           data-mdb-ripple-color="light"
                           className="inline-block px-4 py-2 bg-red-600  text-white font-medium text-sm leading-tight uppercase rounded shadow-lg hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
