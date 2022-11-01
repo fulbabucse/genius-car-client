@@ -3,7 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
-const AddProducts = () => {
+const UpdateProduct = () => {
   const storedProduct = useLoaderData();
   const [updateProducts, setUpdateProducts] = useState(storedProduct);
 
@@ -197,4 +197,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default UpdateProduct;

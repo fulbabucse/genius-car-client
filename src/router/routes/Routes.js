@@ -8,7 +8,9 @@ import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/User/Login/Login";
 import Register from "../../pages/User/Register/Register";
 import AllProducts from "../../Dashboard/Products/AllProducts/AllProducts";
-import Update from "../../Dashboard/Products/Update/Update";
+import Update from "../../Dashboard/Products/Update/UpdateProduct";
+import AddService from "../../Dashboard/Services/AddService/AddService";
+import AllServices from "../../Dashboard/Services/AllServices/AllServices";
 
 const router = createBrowserRouter([
   {
@@ -28,16 +30,24 @@ const router = createBrowserRouter([
     children: [
       { path: "home", element: <DashboardHome></DashboardHome> },
       {
-        path: "/dashboard/add-product",
+        path: "add-product",
         element: <AddProducts></AddProducts>,
       },
       {
-        path: "/dashboard/products",
+        path: "products",
         loader: () => fetch("http://localhost:5000/products"),
         element: <AllProducts></AllProducts>,
       },
       {
-        path: "/dashboard/product/update/:id",
+        path: "add-service",
+        element: <AddService></AddService>,
+      },
+      {
+        path: "services",
+        element: <AllServices></AllServices>,
+      },
+      {
+        path: "product/update/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/products/${params.id}`),
         element: <Update></Update>,
