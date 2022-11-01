@@ -1,15 +1,34 @@
 import React from "react";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 
 const AllServices = () => {
-  const services = useLoaderData();
+  const servicesData = useLoaderData();
+  const [services, setServices] = useState(servicesData);
   const handleServiceDelete = (service) => {
-    console.log(service);
+    const agree = window.confirm("Are you sure delete this user");
+    if (agree) {
+      fetch(`http://localhost:5000/services/${service._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            const restServices = services.filter(
+              (svr) => svr._id !== service._id
+            );
+            setServices(restServices);
+            toast.error("Service deleted successfully");
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   };
   return (
     <div className="h-screen">
       <h1 className="text-3xl font-bold text-center text-gray-700">
-        Total Products {services.length}
+        Total Products {services?.length}
       </h1>
       <div className="flex flex-col">
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -29,13 +48,13 @@ const AllServices = () => {
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-left"
                     >
-                      Products Name
+                      Services Name
                     </th>
                     <th
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
                     >
-                      Products Price
+                      Services Price
                     </th>
                     <th
                       scope="col"
@@ -48,7 +67,7 @@ const AllServices = () => {
                       scope="col"
                       className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
                     >
-                      Products Type
+                      Services Id
                     </th>
                     <th
                       scope="col"
@@ -65,7 +84,7 @@ const AllServices = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {services.map((service, index) => (
+                  {services?.map((service, index) => (
                     <tr
                       key={service._id}
                       className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
@@ -84,7 +103,7 @@ const AllServices = () => {
                       </td>
 
                       <td className="text-sm text-gray-900 text-center font-light px-3 py-4 whitespace-nowrap">
-                        {service.serviceType}
+                        {service.serviceId}
                       </td>
 
                       <td>
@@ -100,7 +119,7 @@ const AllServices = () => {
                       </td>
 
                       <td>
-                        <Link to={`/dashboard/product/update/${service._id}`}>
+                        <Link to={`/dashboard/service/update/${service._id}`}>
                           <button
                             type="button"
                             data-mdb-ripple="true"

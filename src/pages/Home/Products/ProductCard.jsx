@@ -2,13 +2,13 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
-  const { _id, image, name, price } = product;
+  const { image, name, price } = product;
   return (
     <div>
       <div className="rounded-md shadow-lg bg-white h-full">
         <a data-mdb-ripple="true" data-mdb-ripple-color="orange">
           <img
-            className="rounded-md w-full h-56 bg-gray-100"
+            className="rounded-md w-full h-56 bg-gray-200"
             src={image}
             alt={name}
           />
