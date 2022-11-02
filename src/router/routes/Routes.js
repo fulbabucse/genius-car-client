@@ -17,6 +17,12 @@ import Checkout from "../../pages/Checkout/Checkout";
 import Orders from "../../pages/Orders/Orders";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
+/*
+import member1 from "../../../assets/images/team/1.jpg";
+import member2 from "../../../assets/images/team/2.jpg";
+import member3 from "../../../assets/images/team/3.jpg";
+*/
+
 const router = createBrowserRouter([
   {
     path: "/",
