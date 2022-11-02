@@ -1,0 +1,37 @@
+[
+  {
+    "name": "FERNANDO ALONSO",
+    "img": "https://img.freepik.com/free-photo/car-mechanist-making-car-service_1303-26907.jpg?w=740&t=st=1667379545~exp=1667380145~hmac=ce7163ac785f8b5abd96f42809c012fcdf3d7d51843df13f7ab8a0a8582c2e1c",
+    "designation": "Consulting Engineer"
+  },
+  {
+    "name": "BURTON LYONS",
+    "img": "https://img.freepik.com/free-photo/male-worker-factory_1303-14262.jpg?w=740&t=st=1667379599~exp=1667380199~hmac=eca832b8d84a6973765c7d81b182223f03bf380561397a089dd9e5bb23d0cd31",
+    "designation": "Assembly Workers"
+  },
+  {
+    "name": "JIM CLARK",
+    "img": "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    "designation": "Technical Staff"
+  },
+  {
+    "name": "Emily Roberts",
+    "img": "https://images.unsplash.com/photo-1581091226205-b28ac533a45f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+    "designation": "Service Advisor"
+  },
+  {
+    "name": "TOM KRISTENSEN",
+    "img": "https://images.unsplash.com/photo-1581092918484-8313ada2183a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    "designation": "Transport Management"
+  },
+  {
+    "name": "John Doe",
+    "img": "https://images.unsplash.com/photo-1580982175561-7b0b42d770be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+    "designation": "vehicle design"
+  },
+  {
+    "name": "Caroline",
+    "img": "https://img.freepik.com/free-photo/engineer-specialist-asian-female-technician-maintenance-inspect-relay-robot-arm-system-with-laptop-control-quality-operate-process-work-heavy-industry-40-manufacturing-smart-factory_609648-95.jpg?w=740&t=st=1667379369~exp=1667379969~hmac=956de9934b65343d2827b8614e378947df61f558fcbf2fd5afc5a6d2ae63f188",
+    "designation": "Production Engineer"
+  }
+]

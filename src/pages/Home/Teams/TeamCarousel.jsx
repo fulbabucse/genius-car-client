@@ -7,7 +7,23 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "./TeamCarousel.css";
 import { Pagination } from "swiper";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaTwitter,
+  FaWhatsapp,
+} from "react-icons/fa";
+import { useEffect } from "react";
+import { useState } from "react";
 const TeamCarousel = () => {
+  const [members, setMembers] = useState([]);
+  useEffect(() => {
+    fetch("team_member.json")
+      .then((res) => res.json())
+      .then((data) => setMembers(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <>
       <Swiper
@@ -33,38 +49,24 @@ const TeamCarousel = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide className="package">
-          <img src={member1} alt="" />
-          <div>
-            <h3>Fahim Islam</h3>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide className="package">
-          <img src={member2} alt="" />
-        </SwiperSlide>
-
-        <SwiperSlide className="package">
-          <img src={member3} alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="package">
-          <img src={member1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="package">
-          <img src={member2} alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="package">
-          <img src={member3} alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="package">
-          <img src={member1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="package">
-          <img src={member2} alt="" />
-        </SwiperSlide>
-        <SwiperSlide className="package">
-          <img src={member3} alt="" />
-        </SwiperSlide>
+        {members.map((member, index) => (
+          <SwiperSlide key={index} className="package">
+            <img src={member.img} alt="" />
+            <div className="space-y-3">
+              <h3 className="text-xl font-semibold mt-2 text-gray-700">
+                {member.name}
+              </h3>
+              <p className="text-sm">{member.designation}</p>
+              <div className="underline"></div>
+              <div className="flex justify-center gap-2 mt-2">
+                <FaFacebookF className="rounded-full cursor-pointer w-8 h-8 bg-purple-700 hover:bg-purple-600 text-white p-2 transition-all duration-150 text-xl"></FaFacebookF>
+                <FaTwitter className="rounded-full cursor-pointer w-8 h-8 bg-purple-700 hover:bg-purple-600 text-white p-2 transition-all duration-150 text-xl"></FaTwitter>
+                <FaInstagram className="rounded-full cursor-pointer w-8 h-8 bg-purple-700 hover:bg-purple-600 text-white p-2 transition-all duration-150 text-xl"></FaInstagram>
+                <FaWhatsapp className="rounded-full cursor-pointer w-8 h-8 bg-purple-700 hover:bg-purple-600 text-white p-2 transition-all duration-150 text-xl"></FaWhatsapp>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
