@@ -23,7 +23,7 @@ const Footer = () => {
               <div className="flex mt-6 -mx-2">
                 <Link
                   to="/"
-                  className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                  className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400"
                   aria-label="Reddit"
                 >
                   <svg
@@ -38,7 +38,7 @@ const Footer = () => {
 
                 <Link
                   to="/"
-                  className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                  className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400"
                   aria-label="Facebook"
                 >
                   <svg
@@ -53,7 +53,7 @@ const Footer = () => {
 
                 <Link
                   to="/"
-                  className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                  className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-purple-500 dark:hover:text-purple-400"
                   aria-label="Github"
                 >
                   <svg
