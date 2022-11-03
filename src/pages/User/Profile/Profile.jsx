@@ -4,10 +4,11 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Profile = () => {
-  const { user, updateUserProfile } = useContext(AuthContext);
+  const { user, updateUserProfile, userPasswordUpdate, deleteUserAccount } =
+    useContext(AuthContext);
 
-  const nameRef = useRef(user.displayName);
-  const photoLinkRef = useRef(user.photoURL);
+  const nameRef = useRef(user?.displayName);
+  const photoLinkRef = useRef(user?.photoURL);
 
   const handleUserInfoUpdate = (e) => {
     e.preventDefault();
@@ -27,6 +28,22 @@ const Profile = () => {
 
   const handlePasswordChange = (e) => {
     e.preventDefault();
+    userPasswordUpdate(e.target.password.value)
+      .then((res) => {
+        toast.success("Password change successfully");
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const handleDeleteAccount = () => {
+    const agree = window.confirm("Are you sure delete this account");
+    if (agree) {
+      deleteUserAccount()
+        .then((res) => {
+          toast.error("Account deleted successfully");
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   return (
@@ -271,6 +288,7 @@ const Profile = () => {
             >
               <button
                 type="submit"
+                onClick={handleDeleteAccount}
                 className="inline-block px-4 py-2 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out w-2/5"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"

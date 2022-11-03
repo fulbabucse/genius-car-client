@@ -2,10 +2,12 @@ import React from "react";
 import { createContext } from "react";
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
   updateProfile,
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
@@ -34,10 +36,18 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userInfo);
   };
 
+  const userPasswordUpdate = (newPassword) => {
+    return updatePassword(auth.currentUser, newPassword);
+  };
+
   const userSignOut = () => {
     localStorage.removeItem("genius-token");
     setLoading(true);
     return signOut(auth);
+  };
+
+  const deleteUserAccount = () => {
+    return deleteUser(auth.currentUser);
   };
 
   useEffect(() => {
@@ -55,6 +65,8 @@ const AuthProvider = ({ children }) => {
     userSignOut,
     signInUser,
     updateUserProfile,
+    deleteUserAccount,
+    userPasswordUpdate,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
