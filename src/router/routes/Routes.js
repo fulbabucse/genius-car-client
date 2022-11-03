@@ -16,6 +16,8 @@ import Profile from "../../pages/User/Profile/Profile";
 import Checkout from "../../pages/Checkout/Checkout";
 import Orders from "../../pages/Orders/Orders";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Service from "../../pages/Service/Service";
+import Contact from "../../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +48,8 @@ const router = createBrowserRouter([
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },
       { path: "profile", element: <Profile></Profile> },
+      { path: "service", element: <Service></Service> },
+      { path: "contact", element: <Contact></Contact> },
     ],
   },
   {
