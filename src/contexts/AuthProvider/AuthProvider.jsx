@@ -4,8 +4,10 @@ import {
   createUserWithEmailAndPassword,
   deleteUser,
   getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updatePassword,
   updateProfile,
@@ -20,6 +22,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const googleProvider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -38,6 +42,10 @@ const AuthProvider = ({ children }) => {
 
   const userPasswordUpdate = (newPassword) => {
     return updatePassword(auth.currentUser, newPassword);
+  };
+
+  const googleSign = () => {
+    return signInWithPopup(auth, googleProvider);
   };
 
   const userSignOut = () => {
@@ -61,6 +69,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     loading,
+    googleSign,
     createUser,
     userSignOut,
     signInUser,

@@ -4,9 +4,10 @@ import logo from "../../../assets/images/login/register.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, googleSign } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
@@ -41,6 +42,16 @@ const Login = () => {
       })
       .catch((err) => console.error(err));
   };
+
+  const handleGoogleSignIn = () => {
+    googleSign()
+      .then((res) => {
+        navigate(from, { replace: true });
+        toast.success("Successfully sign in with Google");
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <section className="">
       <div className="container px-6 py-6 h-full">
@@ -97,6 +108,7 @@ const Login = () => {
               </div>
 
               <button
+                onClick={handleGoogleSignIn}
                 className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-amber-500"
                 role="button"
                 data-mdb-ripple="true"
