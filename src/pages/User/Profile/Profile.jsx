@@ -9,7 +9,7 @@ const Profile = () => {
       <div className="flex flex-col items-center mt-6">
         <div className="flex flex-col items-center">
           <img
-            className="w-24 h-24 rounded-full ring-4 ring-purple-500"
+            className="w-40 h-40 rounded-full ring-4 ring-purple-500"
             src={user?.photoURL}
             alt=""
           />
