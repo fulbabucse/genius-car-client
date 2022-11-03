@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { FaTh, FaTimes, FaBriefcase } from "react-icons/fa";
 import logo from "../../../assets/logo.svg";
 import UserThumb from "../../../assets/user_thumbnail.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
   const { user, userSignOut } = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
+  const navigate = useNavigate();
 
   const handleUserSignOut = () => {
     userSignOut()
-      .then((res) => {})
+      .then((res) => {
+        navigate("/");
+      })
       .catch((err) => console.error(err));
   };
 
@@ -65,12 +68,15 @@ const Header = () => {
                 Services
               </Link>
 
-              <Link
-                to="/orders"
-                className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-              >
-                Orders
-              </Link>
+              {user?.uid && (
+                <Link
+                  to="/orders"
+                  className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                >
+                  Orders
+                </Link>
+              )}
+
               <Link
                 to="/contact"
                 className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"

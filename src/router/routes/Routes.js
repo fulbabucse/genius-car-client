@@ -17,12 +17,6 @@ import Checkout from "../../pages/Checkout/Checkout";
 import Orders from "../../pages/Orders/Orders";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
-/*
-import member1 from "../../../assets/images/team/1.jpg";
-import member2 from "../../../assets/images/team/2.jpg";
-import member3 from "../../../assets/images/team/3.jpg";
-*/
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -43,7 +37,11 @@ const router = createBrowserRouter([
         path: "/checkout/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
-        element: <Checkout></Checkout>,
+        element: (
+          <PrivateRoute>
+            <Checkout></Checkout>
+          </PrivateRoute>
+        ),
       },
       { path: "login", element: <Login></Login> },
       { path: "register", element: <Register></Register> },

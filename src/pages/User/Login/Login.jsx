@@ -1,12 +1,16 @@
 import React from "react";
 import { FaGoogle, FaFacebookF, FaTwitter } from "react-icons/fa";
 import logo from "../../../assets/images/login/register.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
   const handleUserLogIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,6 +22,7 @@ const Login = () => {
         const user = res.user;
         console.log(user);
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((err) => console.error(err));
   };
@@ -54,20 +59,6 @@ const Login = () => {
               </div>
 
               <div className="flex justify-between items-center mb-6">
-                <div className="form-group form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-purple-600 checked:border-purple-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                    id="exampleCheck1"
-                    required
-                  />
-                  <label
-                    className="form-check-label text-gray-800"
-                    htmlFor="exampleCheck1"
-                  >
-                    Check me out
-                  </label>
-                </div>
                 <a
                   href="#"
                   className="text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 duration-200 transition ease-in-out"
