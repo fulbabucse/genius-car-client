@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useContext } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, updateUserProfile } = useContext(AuthContext);
+
+  const nameRef = useRef(user.displayName);
+  const photoLinkRef = useRef(user.photoURL);
+
+  const handleUserInfoUpdate = (e) => {
+    e.preventDefault();
+    const name = nameRef.current.value;
+    const photoLink = photoLinkRef.current.value;
+    const updatesInfo = {
+      displayName: name,
+      photoURL: photoLink,
+    };
+    updateUserProfile(updatesInfo)
+      .then((res) => {
+        toast.success("Update successfully");
+        e.target.reset();
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const handlePasswordChange = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="h-screen">
       <div className="flex flex-col items-center mt-6">
@@ -77,7 +102,7 @@ const Profile = () => {
                 aria-controls="tabs-profile3"
                 aria-selected="false"
               >
-                Changes Info
+                Edit Profile
               </a>
             </li>
             <li className="nav-item" role="presentation">
@@ -144,7 +169,19 @@ const Profile = () => {
               role="tabpanel"
               aria-labelledby="tabs-home-tab3"
             >
-              Tab 1 content button version
+              <h3 className="text-2xl font-semibold text-gray-700">
+                {user?.displayName}
+              </h3>
+              <a className="text-blue-600" href={`mailto:${user?.email}`}>
+                {user?.email}
+              </a>
+              <p
+                className={`font-bold ${
+                  user?.emailVerified ? "text-purple-600" : "text-red-400"
+                }`}
+              >
+                {user?.emailVerified ? "Verified" : "Not Verified"}
+              </p>
             </div>
             <div
               className="tab-pane fade"
@@ -152,7 +189,52 @@ const Profile = () => {
               role="tabpanel"
               aria-labelledby="tabs-profile-tab3"
             >
-              Tab 2 content button version
+              <form onSubmit={handleUserInfoUpdate} className="space-y-3">
+                <div>
+                  <input
+                    type="text"
+                    name="name"
+                    ref={nameRef}
+                    defaultValue={user?.displayName}
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
+                    placeholder="Name"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    name="photoLink"
+                    ref={photoLinkRef}
+                    defaultValue={user?.photoURL}
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
+                    placeholder="Photo URL"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    defaultValue={user?.email}
+                    disabled
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
+                    placeholder="Email address"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="inline-block px-4 py-2 bg-purple-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out w-2/5"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                >
+                  Save
+                </button>
+              </form>
             </div>
             <div
               className="tab-pane fade"
@@ -160,7 +242,26 @@ const Profile = () => {
               role="tabpanel"
               aria-labelledby="tabs-profile-tab3"
             >
-              Tab 3 content button version
+              <form onSubmit={handlePasswordChange} className="space-y-3">
+                <div>
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
+                    placeholder="Enter new password"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="inline-block px-4 py-2 bg-purple-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out w-2/5"
+                  data-mdb-ripple="true"
+                  data-mdb-ripple-color="light"
+                >
+                  Change Password
+                </button>
+              </form>
             </div>
             <div
               className="tab-pane fade"
@@ -168,7 +269,14 @@ const Profile = () => {
               role="tabpanel"
               aria-labelledby="tabs-profile-tab4"
             >
-              Tab 4 content button version
+              <button
+                type="submit"
+                className="inline-block px-4 py-2 bg-red-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out w-2/5"
+                data-mdb-ripple="true"
+                data-mdb-ripple-color="light"
+              >
+                Delete Account
+              </button>
             </div>
           </div>
         </div>

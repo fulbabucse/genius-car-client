@@ -20,6 +20,7 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         const user = res.user;
+        console.log(user);
         const currentUser = {
           email: user.email,
         };
