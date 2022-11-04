@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterLogo from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { JWTToken } from "../../../utilities/JWTToken";
 
 const Register = () => {
   const [errors, setErrors] = useState(null);
@@ -21,9 +22,11 @@ const Register = () => {
     const password = form.password.value;
     createUser(email, password)
       .then((res) => {
+        const user = res.user;
         handleUpdateUser(name, photoURL);
         form.reset();
         handleEmailVerification();
+        JWTToken(user);
         navigate("/");
       })
       .catch((err) => {

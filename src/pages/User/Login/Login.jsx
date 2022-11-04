@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { JWTToken } from "../../../utilities/JWTToken";
 
 const Login = () => {
   const { signInUser, googleSign } = useContext(AuthContext);
@@ -24,22 +25,8 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         const user = res.user;
-        const currentUser = {
-          email: user.email,
-        };
-
-        fetch("http://localhost:5000/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            localStorage.setItem("genius-token", data.token);
-            navigate(from, { replace: true });
-          });
+        JWTToken(user);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/user-not-found).") {
@@ -54,6 +41,8 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSign()
       .then((res) => {
+        const user = res.user;
+        JWTToken(user);
         navigate(from, { replace: true });
         toast.success("Successfully sign in with Google");
       })

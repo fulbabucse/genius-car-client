@@ -50,10 +50,12 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const userPasswordUpdate = (newPassword) => {
+    setLoading(true);
     return updatePassword(auth.currentUser, newPassword);
   };
 
   const googleSign = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -64,10 +66,13 @@ const AuthProvider = ({ children }) => {
   };
 
   const deleteUserAccount = () => {
+    localStorage.removeItem("genius-token");
+    setLoading(true);
     return deleteUser(auth.currentUser);
   };
 
   const verifyUserEmail = () => {
+    setLoading(true);
     return sendEmailVerification(auth.currentUser);
   };
 

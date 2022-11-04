@@ -11,11 +11,14 @@ const Orders = () => {
   const { user, userSignOut } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("genius-token")}`,
-      },
-    })
+    fetch(
+      `https://genius-car-server-eta.vercel.app/orders?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("genius-token")}`,
+        },
+      }
+    )
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           return userSignOut();
@@ -29,7 +32,7 @@ const Orders = () => {
   const handleDeleteOrder = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://genius-car-server-eta.vercel.app/orders/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("genius-token")}`,

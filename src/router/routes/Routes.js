@@ -38,7 +38,9 @@ const router = createBrowserRouter([
       {
         path: "/checkout/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://genius-car-server-eta.vercel.app/services/${params.id}`
+          ),
         element: (
           <PrivateRoute>
             <Checkout></Checkout>
@@ -70,13 +72,16 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch("https://genius-car-server-eta.vercel.app/products"),
         element: <AllProducts></AllProducts>,
       },
       {
         path: "product/update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://genius-car-server-eta.vercel.app/products/${params.id}`
+          ),
         element: <Update></Update>,
       },
       {
@@ -85,13 +90,16 @@ const router = createBrowserRouter([
       },
       {
         path: "services",
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://genius-car-server-eta.vercel.app/services"),
         element: <AllServices></AllServices>,
       },
       {
         path: "service/update/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://genius-car-server-eta.vercel.app/services/${params.id}`
+          ),
         element: <UpdateService></UpdateService>,
       },
     ],

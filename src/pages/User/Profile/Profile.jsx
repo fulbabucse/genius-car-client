@@ -18,6 +18,7 @@ const Profile = () => {
       displayName: name,
       photoURL: photoLink,
     };
+
     updateUserProfile(updatesInfo)
       .then((res) => {
         toast.success("Update successfully");
