@@ -5,14 +5,17 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const Login = () => {
   const { signInUser, googleSign } = useContext(AuthContext);
+  const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const handleUserLogIn = (e) => {
+    setErrors("");
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -25,7 +28,6 @@ const Login = () => {
         const currentUser = {
           email: user.email,
         };
-        form.reset();
 
         fetch("http://localhost:5000/jwt", {
           method: "POST",
@@ -40,7 +42,14 @@ const Login = () => {
             navigate(from, { replace: true });
           });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        if (err.message === "Firebase: Error (auth/user-not-found).") {
+          setErrors("Couldn't find your account");
+        } else if (err.message === "Firebase: Error (auth/wrong-password).") {
+          setErrors("Invalid username or password");
+        }
+        console.error(err);
+      });
   };
 
   const handleGoogleSignIn = () => {
@@ -60,11 +69,16 @@ const Login = () => {
             <img src={logo} className="w-full" alt="Phone image" />
           </div>
           <div className="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
-            <h2 className="text-center text-3xl font-bold text-gray-700 uppercase mb-4">
-              Log In
-            </h2>
+            <div className="mb-4">
+              <h2 className="text-center text-3xl font-bold text-gray-700 uppercase">
+                Log In
+              </h2>
+              <p className="text-center text-gray-700 font-semibold">
+                Sign in to access your account
+              </p>
+            </div>
             <form onSubmit={handleUserLogIn}>
-              <div className="mb-6">
+              <div className="mb-3">
                 <input
                   type="text"
                   name="email"
@@ -85,6 +99,7 @@ const Login = () => {
               </div>
 
               <div className="flex justify-between items-center mb-6">
+                <p className="text-red-600">{errors}</p>
                 <a
                   href="#"
                   className="text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 duration-200 transition ease-in-out"
