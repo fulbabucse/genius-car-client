@@ -9,7 +9,8 @@ import { useState } from "react";
 import { JWTToken } from "../../../utilities/JWTToken";
 
 const Login = () => {
-  const { signInUser, googleSign } = useContext(AuthContext);
+  const { signInUser, googleSign, userPasswordReset } = useContext(AuthContext);
+  const [emailAddress, setEmailAddress] = useState("");
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,6 +50,25 @@ const Login = () => {
       .catch((err) => console.error(err));
   };
 
+  const handleEmailBlur = (e) => {
+    setEmailAddress(e.target.value);
+  };
+
+  const handlePasswordReset = () => {
+    if (!emailAddress) {
+      toast.error("Please enter your email address");
+      return;
+    }
+
+    userPasswordReset(emailAddress)
+      .then((res) => {
+        toast.success(
+          "Password reset email has sent, Please check Inbox or Spam"
+        );
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <section className="">
       <div className="container px-6 py-6 h-full">
@@ -70,6 +90,7 @@ const Login = () => {
                 <input
                   type="text"
                   name="email"
+                  onBlur={handleEmailBlur}
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-purple-600 focus:outline-none"
                   placeholder="Email address"
                   required
@@ -86,16 +107,6 @@ const Login = () => {
                 />
               </div>
 
-              <div className="flex justify-between items-center mb-6">
-                <p className="text-red-600">{errors}</p>
-                <a
-                  href="#"
-                  className="text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 duration-200 transition ease-in-out"
-                >
-                  Forgot password?
-                </a>
-              </div>
-
               <button
                 type="submit"
                 className="inline-block px-7 py-3 bg-purple-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out w-full"
@@ -105,6 +116,15 @@ const Login = () => {
                 Log In
               </button>
             </form>
+            <div className="flex justify-between items-center mt-3">
+              <p className="text-red-600">{errors}</p>
+              <button
+                onClick={handlePasswordReset}
+                className="text-purple-600 hover:text-purple-700 focus:text-purple-700 active:text-purple-800 duration-200 transition ease-in-out"
+              >
+                Forgot password?
+              </button>
+            </div>
             <div>
               <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
                 <p className="text-center font-semibold mx-4 mb-0">OR</p>
