@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,26 +7,36 @@ import RegisterLogo from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Register = () => {
+  const [errors, setErrors] = useState(null);
   const { createUser, updateUserProfile, verifyUserEmail } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const handleUserLogIn = (e) => {
+    setErrors("");
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const photoURL = form.photoLink.value;
     const email = form.email.value;
     const password = form.password.value;
-
     createUser(email, password)
       .then((res) => {
-        const user = res.user;
         handleUpdateUser(name, photoURL);
         form.reset();
         handleEmailVerification();
         navigate("/");
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        if (err.message === "Firebase: Error (auth/email-already-in-use).") {
+          setErrors("This Email already used");
+        } else if (
+          err.message ===
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
+        ) {
+          setErrors("Password should be at least 6 characters");
+        }
+        console.error(err);
+      });
   };
 
   const handleUpdateUser = (name, photoLink) => {
@@ -54,9 +65,14 @@ const Register = () => {
             <img src={RegisterLogo} className="w-3/5" alt="Register" />
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-            <h2 className="text-center text-3xl font-bold text-gray-700 uppercase mb-4">
-              Register
-            </h2>
+            <div className="mb-4">
+              <h2 className="text-center text-3xl font-bold text-gray-700 uppercase">
+                Register
+              </h2>
+              <p className="text-center text-gray-700 font-semibold">
+                Create a new Account
+              </p>
+            </div>
             <form onSubmit={handleUserLogIn} className="space-y-3">
               <div>
                 <input
@@ -98,7 +114,7 @@ const Register = () => {
                 />
               </div>
 
-              <div className="flex justify-between items-center mb-6">
+              <div className="mb-6">
                 <div className="form-group form-check">
                   <input
                     type="checkbox"
@@ -110,9 +126,10 @@ const Register = () => {
                     className="form-check-label text-gray-800"
                     htmlFor="exampleCheck1"
                   >
-                    Check me out
+                    Agree to Terms and Conditions?
                   </label>
                 </div>
+                <p className="text-red-600 font-semibold">{errors}</p>
               </div>
 
               <button

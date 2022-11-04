@@ -24,7 +24,6 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
         const currentUser = {
           email: user.email,
         };
@@ -74,7 +73,7 @@ const Login = () => {
                 Log In
               </h2>
               <p className="text-center text-gray-700 font-semibold">
-                Sign in to access your account
+                Log in to access your account
               </p>
             </div>
             <form onSubmit={handleUserLogIn}>
