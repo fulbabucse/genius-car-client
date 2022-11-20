@@ -145,6 +145,12 @@ const DashboardHeader = () => {
                   </div>
                 </div>
               </div>
+              <Link
+                to="/dashboard/users"
+                className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+              >
+                Users
+              </Link>
             </div>
           </div>
         </div>

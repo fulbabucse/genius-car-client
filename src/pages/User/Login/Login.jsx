@@ -44,11 +44,25 @@ const Login = () => {
       });
   };
 
+  const userInfoSaveDatabase = (name, email) => {
+    const user = { name, email };
+    fetch("http://localhost:5000/users", {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then(() => {});
+  };
+
   const handleGoogleSignIn = () => {
     googleSign()
       .then((res) => {
         const user = res.user;
         setEmail(user);
+        userInfoSaveDatabase(user?.displayName, user?.email);
         toast.success("Successfully sign in with Google");
       })
       .catch((err) => console.error(err));

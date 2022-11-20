@@ -69,7 +69,7 @@ const Register = () => {
   const userInfoSaveDatabase = (name, email) => {
     const user = { name, email };
     fetch("http://localhost:5000/users", {
-      method: "POST",
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },

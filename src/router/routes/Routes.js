@@ -18,6 +18,7 @@ import Orders from "../../pages/Orders/Orders";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Service from "../../pages/Service/Service";
 import Contact from "../../pages/Contact/Contact";
+import Users from "../../Dashboard/Users/Users";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,10 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
         element: <UpdateService></UpdateService>,
+      },
+      {
+        path: "/dashboard/users",
+        element: <Users></Users>,
       },
     ],
   },
