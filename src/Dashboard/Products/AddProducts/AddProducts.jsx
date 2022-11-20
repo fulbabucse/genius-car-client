@@ -35,7 +35,7 @@ const AddProducts = () => {
   return (
     <div className="h-screen">
       <div className="p-6 rounded-lg shadow-lg bg-white max-w-xl mx-auto lg:mt-10">
-        <h2 className="text-3xl font-bold mb-5 text-center text-gray-700 uppercase">
+        <h2 className="text-xl lg:text-2xl font-bold mb-5 text-center text-gray-700 uppercase">
           Add Product
         </h2>
         <form onSubmit={handleAddProductsForm}>

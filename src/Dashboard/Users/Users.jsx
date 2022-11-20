@@ -65,21 +65,15 @@ const Users = () => {
                         </th>
                         <th
                           scope="col"
-                          className="text-sm font-medium text-gray-900 px-6 py-4"
+                          className="text-sm text-start font-medium text-gray-900 px-6 py-4"
                         >
                           Email
                         </th>
                         <th
                           scope="col"
-                          className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                          className="text-sm text-start font-medium text-gray-900 px-6 py-4"
                         >
                           Role
-                        </th>
-                        <th
-                          scope="col"
-                          className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
-                        >
-                          Action
                         </th>
                       </tr>
                     </thead>
@@ -92,14 +86,14 @@ const Users = () => {
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             {index + 1}
                           </td>
-                          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 font-light px-6 py-4">
                             {user.name}
                           </td>
-                          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 font-light px-6 py-4">
                             {user.email}
                           </td>
 
-                          <td className="text-center">
+                          <td className="px-6">
                             {user?.role !== "admin" ? (
                               <button
                                 onClick={() => handleProductDelete(user?._id)}
@@ -115,24 +109,11 @@ const Users = () => {
                                 type="button"
                                 data-mdb-ripple="true"
                                 data-mdb-ripple-color="light"
-                                className="inline-block px-4 py-2 bg-blue-600 text-white font-medium text-sm leading-tight uppercase rounded shadow-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
-                              >
-                                Admin
-                              </button>
-                            )}
-                          </td>
-
-                          <td className="text-center">
-                            <Link to={`/dashboard`}>
-                              <button
-                                type="button"
-                                data-mdb-ripple="true"
-                                data-mdb-ripple-color="light"
                                 className="inline-block px-4 py-2 bg-purple-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-lg hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
                               >
-                                Delete
+                                Remove Admin
                               </button>
-                            </Link>
+                            )}
                           </td>
                         </tr>
                       ))}

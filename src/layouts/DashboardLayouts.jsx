@@ -5,7 +5,7 @@ import Footer from "../pages/Shared/Footer/Footer";
 
 const DashboardLayouts = () => {
   return (
-    <div className="max-w-screen-lg mx-auto">
+    <div className="max-w-screen-xl mx-auto">
       <DashboardHeader></DashboardHeader>
       <Outlet></Outlet>
       <Footer></Footer>

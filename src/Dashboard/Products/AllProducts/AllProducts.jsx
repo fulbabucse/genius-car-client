@@ -30,7 +30,7 @@ const AllProducts = () => {
 
   return (
     <div className="h-screen">
-      <h1 className="text-3xl font-bold text-center text-gray-700">
+      <h1 className="text-xl lg:text-2xl font-bold text-center text-gray-700">
         Total Products {productsData.length}
       </h1>
       <div className="flex flex-col">
