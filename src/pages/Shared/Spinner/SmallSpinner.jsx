@@ -1,6 +1,6 @@
 import React from "react";
 
-const Spinner = () => {
+const SmallSpinner = () => {
   return (
     <div className="min-h-screen">
       <div class="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
@@ -10,4 +10,4 @@ const Spinner = () => {
   );
 };
 
-export default Spinner;
+export default SmallSpinner;

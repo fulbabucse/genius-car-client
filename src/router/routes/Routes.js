@@ -19,6 +19,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Service from "../../pages/Service/Service";
 import Contact from "../../pages/Contact/Contact";
 import Users from "../../Dashboard/Users/Users";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -62,49 +63,81 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayouts></DashboardLayouts>,
+    element: (
+      <AdminRoute>
+        <DashboardLayouts></DashboardLayouts>
+      </AdminRoute>
+    ),
     children: [
       {
         path: "/dashboard",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <DashboardHome></DashboardHome>
-          </PrivateRoute>
+          </AdminRoute>
         ),
       },
       {
         path: "/dashboard/add-product",
-        element: <AddProducts></AddProducts>,
+        element: (
+          <AdminRoute>
+            <AddProducts></AddProducts>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/products",
         loader: () => fetch("http://localhost:5000/products"),
-        element: <AllProducts></AllProducts>,
+        element: (
+          <AdminRoute>
+            <AllProducts></AllProducts>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/product/update/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/products/${params.id}`),
-        element: <Update></Update>,
+        element: (
+          <AdminRoute>
+            <Update></Update>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/add-service",
-        element: <AddService></AddService>,
+        element: (
+          <AdminRoute>
+            <AddService></AddService>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/services",
         loader: () => fetch("http://localhost:5000/services"),
-        element: <AllServices></AllServices>,
+        element: (
+          <AdminRoute>
+            <AllServices></AllServices>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/service/update/:id",
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
-        element: <UpdateService></UpdateService>,
+        element: (
+          <AdminRoute>
+            <UpdateService></UpdateService>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/users",
-        element: <Users></Users>,
+        element: (
+          <AdminRoute>
+            <Users></Users>
+          </AdminRoute>
+        ),
       },
     ],
   },

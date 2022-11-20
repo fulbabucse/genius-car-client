@@ -5,11 +5,13 @@ import UserThumb from "../../../assets/user_thumbnail.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import { useAdmin } from "../../../hooks/useAdmin";
 
 const Header = () => {
   const { user, userSignOut } = useContext(AuthContext);
   const [navbar, setNavbar] = useState(false);
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin(user?.email);
 
   const handleUserSignOut = () => {
     userSignOut()
@@ -113,7 +115,7 @@ const Header = () => {
               <div>
                 <FaBriefcase></FaBriefcase>
               </div>
-              {user?.email && (
+              {user?.email && isAdmin && (
                 <Link
                   to="/dashboard"
                   className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
@@ -192,17 +194,6 @@ const Header = () => {
                   </div>
                 </div>
               </div>
-
-              <Link>
-                <button
-                  type="button"
-                  data-mdb-ripple="true"
-                  data-mdb-ripple-color="light"
-                  className="inline-block px-6 py-3 bg-purple-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-lg hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-                >
-                  Appointments
-                </button>
-              </Link>
             </div>
           </div>
         </div>
