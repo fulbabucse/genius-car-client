@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { Link } from "react-router-dom";
 import SmallSpinner from "../../pages/Shared/Spinner/SmallSpinner";
 
 const Users = () => {
@@ -17,8 +16,23 @@ const Users = () => {
     },
   });
 
-  const handleProductDelete = (id) => {
+  const handleMakeAdmin = (id) => {
     fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("genius-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          refetch();
+        }
+      });
+  };
+
+  const handleRemoveAdmin = (id) => {
+    fetch(`http://localhost:5000/users/removeAdmin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("genius-token")}`,
@@ -96,7 +110,7 @@ const Users = () => {
                           <td className="px-6">
                             {user?.role !== "admin" ? (
                               <button
-                                onClick={() => handleProductDelete(user?._id)}
+                                onClick={() => handleMakeAdmin(user?._id)}
                                 type="button"
                                 data-mdb-ripple="true"
                                 data-mdb-ripple-color="light"
@@ -107,6 +121,7 @@ const Users = () => {
                             ) : (
                               <button
                                 type="button"
+                                onClick={() => handleRemoveAdmin(user?._id)}
                                 data-mdb-ripple="true"
                                 data-mdb-ripple-color="light"
                                 className="inline-block px-4 py-2 bg-purple-800 text-white font-medium text-sm leading-tight uppercase rounded shadow-lg hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
