@@ -6,15 +6,21 @@ import { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { JWTToken } from "../../../utilities/JWTToken";
+import { useToken } from "../../../hooks/useToken";
 
 const Login = () => {
   const { signInUser, googleSign, userPasswordReset } = useContext(AuthContext);
   const [emailAddress, setEmailAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [token] = useToken(email);
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleUserLogIn = (e) => {
     setErrors("");
@@ -26,8 +32,7 @@ const Login = () => {
     signInUser(email, password)
       .then((res) => {
         const user = res.user;
-        JWTToken(user);
-        navigate(from, { replace: true });
+        setEmail(user);
       })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/user-not-found).") {
@@ -43,8 +48,7 @@ const Login = () => {
     googleSign()
       .then((res) => {
         const user = res.user;
-        JWTToken(user);
-        navigate(from, { replace: true });
+        setEmail(user);
         toast.success("Successfully sign in with Google");
       })
       .catch((err) => console.error(err));
@@ -74,7 +78,7 @@ const Login = () => {
       <div className="container px-6 py-6 h-full">
         <div className="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div className="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
-            <img src={logo} className="w-full" alt="Phone image" />
+            <img src={logo} className="w-full" alt="" />
           </div>
           <div className="w-full md:w-8/12 lg:w-5/12 lg:ml-20">
             <div className="mb-4">
@@ -131,9 +135,9 @@ const Login = () => {
               </div>
 
               <button
-                onClick={handleGoogleSignIn}
                 className="px-7 py-3 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:shadow-lg focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out w-full flex justify-center items-center mb-3 bg-amber-500"
                 role="button"
+                onClick={handleGoogleSignIn}
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
               >

@@ -1,7 +1,4 @@
 import React from "react";
-import member1 from "../../../assets/images/team/1.jpg";
-import member2 from "../../../assets/images/team/2.jpg";
-import member3 from "../../../assets/images/team/3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";

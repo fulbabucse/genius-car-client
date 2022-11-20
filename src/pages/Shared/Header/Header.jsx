@@ -113,12 +113,14 @@ const Header = () => {
               <div>
                 <FaBriefcase></FaBriefcase>
               </div>
-              <Link
-                to="/dashboard"
-                className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
-              >
-                Dashboard
-              </Link>
+              {user?.email && (
+                <Link
+                  to="/dashboard"
+                  className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+                >
+                  Dashboard
+                </Link>
+              )}
               <div>
                 <div className="flex justify-center">
                   <div className="dropdown relative">

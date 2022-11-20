@@ -5,13 +5,20 @@ import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import RegisterLogo from "../../../assets/images/login/login.svg";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import { JWTToken } from "../../../utilities/JWTToken";
+import { useToken } from "../../../hooks/useToken";
 
 const Register = () => {
   const [errors, setErrors] = useState(null);
+  const [createdUser, setCreatedUser] = useState("");
   const { createUser, updateUserProfile, verifyUserEmail } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const [token] = useToken(createdUser);
+
+  if (token) {
+    navigate("/");
+  }
+
   const handleUserLogIn = (e) => {
     setErrors("");
     e.preventDefault();
@@ -28,9 +35,9 @@ const Register = () => {
           photoURL: photoURL,
         };
         updateUserProfile(userInfo)
-          .then((res) => {
+          .then(() => {
             userInfoSaveDatabase(name, email);
-            JWTToken(user);
+            setCreatedUser(user);
             handleEmailVerification();
           })
           .catch((err) => console.error(err));
@@ -69,15 +76,12 @@ const Register = () => {
       body: JSON.stringify(user),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        navigate("/");
-      });
+      .then(() => {});
   };
 
   const handleEmailVerification = () => {
     verifyUserEmail()
-      .then((res) => {
+      .then(() => {
         toast.success("Please check your email and verify");
       })
       .catch((err) => console.error(err));

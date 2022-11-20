@@ -6,13 +6,13 @@ const ProductCard = ({ product }) => {
   return (
     <div>
       <div className="rounded-md shadow-lg bg-white h-full">
-        <a data-mdb-ripple="true" data-mdb-ripple-color="orange">
+        <p data-mdb-ripple="true" data-mdb-ripple-color="orange">
           <img
             className="rounded-md w-full h-56 bg-gray-200"
             src={image}
             alt={name}
           />
-        </a>
+        </p>
         <div className="p-4">
           <h5 className="flex justify-center text-orange-400 text-xl font-bold mb-2">
             <FaStar></FaStar>
