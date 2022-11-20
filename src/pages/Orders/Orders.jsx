@@ -5,11 +5,16 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import Spinner from "../Shared/Spinner/Spinner";
 
 const Orders = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: orders = [], refetch } = useQuery({
+  const {
+    data: orders = [],
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["orders", "email", user?.email],
     queryFn: async () => {
       const res = await fetch(
@@ -24,6 +29,10 @@ const Orders = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
 
   const handleDeleteOrder = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");

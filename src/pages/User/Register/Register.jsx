@@ -23,11 +23,18 @@ const Register = () => {
     createUser(email, password)
       .then((res) => {
         const user = res.user;
-        handleUpdateUser(name, photoURL);
+        const userInfo = {
+          displayName: name,
+          photoURL: photoURL,
+        };
+        updateUserProfile(userInfo)
+          .then((res) => {
+            userInfoSaveDatabase(name, email);
+            JWTToken(user);
+            handleEmailVerification();
+          })
+          .catch((err) => console.error(err));
         form.reset();
-        handleEmailVerification();
-        JWTToken(user);
-        navigate("/");
       })
       .catch((err) => {
         if (err.message === "Firebase: Error (auth/email-already-in-use).") {
@@ -42,14 +49,30 @@ const Register = () => {
       });
   };
 
-  const handleUpdateUser = (name, photoLink) => {
-    const userInfo = {
-      displayName: name,
-      photoURL: photoLink,
-    };
-    updateUserProfile(userInfo)
-      .then((res) => {})
-      .catch((err) => console.error(err));
+  // const handleUpdateUser = (name, photoLink) => {
+  //   const userInfo = {
+  //     displayName: name,
+  //     photoURL: photoLink,
+  //   };
+  //   updateUserProfile(userInfo)
+  //     .then((res) => {})
+  //     .catch((err) => console.error(err));
+  // };
+
+  const userInfoSaveDatabase = (name, email) => {
+    const user = { name, email };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        navigate("/");
+      });
   };
 
   const handleEmailVerification = () => {
