@@ -1,39 +1,34 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import { useContext } from "react";
 import { FaTimes } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const Orders = () => {
-  const [orders, setOrders] = useState([]);
-  const { user, userSignOut } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  useEffect(() => {
-    fetch(
-      `https://genius-car-server-eta.vercel.app/orders?email=${user?.email}`,
-      {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("genius-token")}`,
-        },
-      }
-    )
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          return userSignOut();
+  const { data: orders = [], refetch } = useQuery({
+    queryKey: ["orders", "email", user?.email],
+    queryFn: async () => {
+      const res = await fetch(
+        `http://localhost:5000/orders?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("genius-token")}`,
+          },
         }
-        return res.json();
-      })
-      .then((data) => setOrders(data))
-      .catch((err) => console.error(err));
-  }, [user?.email, userSignOut]);
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
 
   const handleDeleteOrder = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
-      fetch(`https://genius-car-server-eta.vercel.app/orders/${id}`, {
+      fetch(`http://localhost:5000/orders/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("genius-token")}`,
@@ -42,9 +37,8 @@ const Orders = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            const restOrders = orders.filter((odr) => odr._id !== id);
             toast.error("Orders cancel successfully");
-            setOrders(restOrders);
+            refetch();
           }
         })
         .catch((err) => console.error(err));
@@ -74,7 +68,7 @@ const Orders = () => {
 
                         <th
                           scope="col"
-                          className="text-sm font-medium text-center text-gray-900  py-4"
+                          className="text-sm font-medium text-center text-gray-900  py-1"
                         >
                           Image
                         </th>
@@ -112,26 +106,26 @@ const Orders = () => {
                           key={order._id}
                           className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
                         >
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          <td className="px-6 py-1 whitespace-nowrap text-sm font-medium text-gray-900">
                             {index + 1}
                           </td>
 
                           <td className="py-1 flex justify-center">
                             <img
                               src={order.image}
-                              className="w-16 h-16 rounded-lg"
+                              className="w-10 h-10 rounded-lg"
                               alt=""
                             />
                           </td>
 
-                          <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 font-light px-6 py-1 whitespace-nowrap">
                             {order.serviceName}
                           </td>
-                          <td className="text-sm text-gray-900 text-center font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 text-center font-light px-6 py-1 whitespace-nowrap">
                             {order.price}
                           </td>
 
-                          <td className="text-sm text-gray-900 text-center font-light px-6 py-4 whitespace-nowrap">
+                          <td className="text-sm text-gray-900 text-center font-light px-6 py-1 whitespace-nowrap">
                             {order.phone}
                           </td>
 

@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AddProducts from "../../Dashboard/Products/AddProducts/AddProducts";
 import DashboardHome from "../../Dashboard/DashboardHome/DashboardHome";
-import Dashboard from "../../layouts/Dashboard";
+import DashboardLayouts from "../../layouts/DashboardLayouts";
 import Root from "../../layouts/Root";
 import About from "../../pages/About/About";
 import Home from "../../pages/Home/Home/Home";
@@ -38,9 +38,7 @@ const router = createBrowserRouter([
       {
         path: "/checkout/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://genius-car-server-eta.vercel.app/services/${params.id}`
-          ),
+          fetch(`http://localhost:5000/services/${params.id}`),
         element: (
           <PrivateRoute>
             <Checkout></Checkout>
@@ -62,44 +60,38 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    path: "/dashboard",
+    element: <DashboardLayouts></DashboardLayouts>,
     children: [
-      { path: "home", element: <DashboardHome></DashboardHome> },
+      { path: "/dashboard", element: <DashboardHome></DashboardHome> },
       {
-        path: "add-product",
+        path: "/dashboard/add-product",
         element: <AddProducts></AddProducts>,
       },
       {
-        path: "products",
-        loader: () =>
-          fetch("https://genius-car-server-eta.vercel.app/products"),
+        path: "/dashboard/products",
+        loader: () => fetch("http://localhost:5000/products"),
         element: <AllProducts></AllProducts>,
       },
       {
-        path: "product/update/:id",
+        path: "/dashboard/product/update/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://genius-car-server-eta.vercel.app/products/${params.id}`
-          ),
+          fetch(`http://localhost:5000/products/${params.id}`),
         element: <Update></Update>,
       },
       {
-        path: "add-service",
+        path: "/dashboard/add-service",
         element: <AddService></AddService>,
       },
       {
-        path: "services",
-        loader: () =>
-          fetch("https://genius-car-server-eta.vercel.app/services"),
+        path: "/dashboard/services",
+        loader: () => fetch("http://localhost:5000/services"),
         element: <AllServices></AllServices>,
       },
       {
-        path: "service/update/:id",
+        path: "/dashboard/service/update/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://genius-car-server-eta.vercel.app/services/${params.id}`
-          ),
+          fetch(`http://localhost:5000/services/${params.id}`),
         element: <UpdateService></UpdateService>,
       },
     ],

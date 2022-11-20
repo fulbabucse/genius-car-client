@@ -17,16 +17,13 @@ const UpdateProduct = () => {
 
   const handleProductUpdate = (e) => {
     e.preventDefault();
-    fetch(
-      `https://genius-car-server-eta.vercel.app/products/${updateProducts._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updateProducts),
-      }
-    )
+    fetch(`http://localhost:5000/products/${updateProducts._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateProducts),
+    })
       .then((res) => res.json())
       .then((data) => {
         setUpdateProducts(data);

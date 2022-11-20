@@ -12,7 +12,7 @@ const DashboardHeader = () => {
         <div className="lg:flex lg:items-center">
           <div className="flex items-center justify-between">
             <div>
-              <Link to="/dashboard/home">
+              <Link to="/">
                 <img className="w-16 h-10" src={logo} alt="Genius Car logo" />
               </Link>
             </div>
@@ -36,7 +36,7 @@ const DashboardHeader = () => {
           >
             <div className="flex flex-col transition-all duration-300 ease-in-out  text-gray-600 capitalize dark:text-gray-300 lg:flex lg:px-16 lg:-mx-4 lg:flex-row lg:items-center">
               <Link
-                to="/dashboard/home"
+                to="/dashboard"
                 className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
               >
                 Home

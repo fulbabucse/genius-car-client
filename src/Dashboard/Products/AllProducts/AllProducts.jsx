@@ -11,12 +11,9 @@ const AllProducts = () => {
   const handleProductDelete = (product) => {
     const agree = window.confirm("Are you sure delete this user");
     if (agree) {
-      fetch(
-        `https://genius-car-server-eta.vercel.app/products/${product._id}`,
-        {
-          method: "DELETE",
-        }
-      )
+      fetch(`http://localhost:5000/products/${product._id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {

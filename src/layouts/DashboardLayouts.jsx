@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import DashboardHeader from "../Dashboard/DashboardHeader/DashboardHeader";
 import Footer from "../pages/Shared/Footer/Footer";
 
-const Dashboard = () => {
+const DashboardLayouts = () => {
   return (
     <div className="max-w-screen-lg mx-auto">
       <DashboardHeader></DashboardHeader>
@@ -13,4 +13,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardLayouts;

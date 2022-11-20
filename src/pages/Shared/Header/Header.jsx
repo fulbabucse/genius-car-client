@@ -113,6 +113,12 @@ const Header = () => {
               <div>
                 <FaBriefcase></FaBriefcase>
               </div>
+              <Link
+                to="/dashboard"
+                className="mt-2 transition-colors duration-300 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200"
+              >
+                Dashboard
+              </Link>
               <div>
                 <div className="flex justify-center">
                   <div className="dropdown relative">
@@ -125,7 +131,7 @@ const Header = () => {
                       <img
                         className="w-10 h-10 rounded-full"
                         src={user?.photoURL || UserThumb}
-                        alt="User Picture"
+                        alt=""
                       />
                     </button>
                     <ul
@@ -184,6 +190,7 @@ const Header = () => {
                   </div>
                 </div>
               </div>
+
               <Link>
                 <button
                   type="button"

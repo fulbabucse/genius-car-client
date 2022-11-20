@@ -17,16 +17,13 @@ const UpdateService = () => {
 
   const handleServiceUpdate = (e) => {
     e.preventDefault();
-    fetch(
-      `https://genius-car-server-eta.vercel.app/services/${updateService._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updateService),
-      }
-    )
+    fetch(`http://localhost:5000/services/${updateService._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateService),
+    })
       .then((res) => res.json())
       .then((data) => {
         setUpdateService(data);
