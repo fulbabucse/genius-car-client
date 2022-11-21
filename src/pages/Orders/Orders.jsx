@@ -78,7 +78,11 @@ const Orders = () => {
                   Customer’s Cart
                 </p>
                 {orders?.map((order) => (
-                  <OrderCard key={order?._id} order={order}></OrderCard>
+                  <OrderCard
+                    key={order?._id}
+                    order={order}
+                    handleDeleteOrder={handleDeleteOrder}
+                  ></OrderCard>
                 ))}
               </div>
 
@@ -142,7 +146,7 @@ const Orders = () => {
                     </p>
                   </div>
                   <div className="w-full flex justify-center items-center">
-                    <button className="hover:bg-black dark:bg-white dark:text-gray-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
+                    <button className="hover:bg-purple-600 dark:bg-white dark:text-purple-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-800 py-5 w-96 md:w-full bg-purple-800 text-base font-medium leading-4 text-white">
                       Place Order
                     </button>
                   </div>

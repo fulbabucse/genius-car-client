@@ -1,8 +1,8 @@
 import React from "react";
+import { FaTimes } from "react-icons/fa";
 
-const OrderCard = ({ order }) => {
-  const { image, price, serviceName } = order;
-  console.log(order);
+const OrderCard = ({ order, handleDeleteOrder }) => {
+  const { _id, image, price, serviceName } = order;
   return (
     <div className="mt-4 md:mt-6 flex flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full">
       <div className="pb-4 md:pb-8 w-full md:w-40">
@@ -21,6 +21,11 @@ const OrderCard = ({ order }) => {
           </p>
           <p className="text-base dark:text-white xl:text-lg font-semibold leading-6 text-gray-800">
             ${price}
+          </p>
+          <p className="text-base hover:text-red-500 xl:text-2xl font-semibold leading-6 text-gray-800">
+            <button onClick={() => handleDeleteOrder(_id)}>
+              <FaTimes></FaTimes>
+            </button>
           </p>
         </div>
       </div>
