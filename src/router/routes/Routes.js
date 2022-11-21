@@ -20,6 +20,7 @@ import Service from "../../pages/Service/Service";
 import Contact from "../../pages/Contact/Contact";
 import Users from "../../Dashboard/Users/Users";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import Payment from "../../pages/Shared/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,14 @@ const router = createBrowserRouter([
       },
       { path: "service", element: <Service></Service> },
       { path: "contact", element: <Contact></Contact> },
+      {
+        path: "/orders/payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {

@@ -100,6 +100,14 @@ const Orders = () => {
                         ${subTotalPrice}
                       </p>
                     </div>
+                    <div className="flex justify-between w-full">
+                      <p className="text-base dark:text-white leading-4 text-gray-800">
+                        Total Items
+                      </p>
+                      <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
+                        {orders.length}
+                      </p>
+                    </div>
                     <div className="flex justify-between items-center w-full">
                       <p className="text-base dark:text-white leading-4 text-gray-800">
                         Shipping
@@ -146,9 +154,11 @@ const Orders = () => {
                     </p>
                   </div>
                   <div className="w-full flex justify-center items-center">
-                    <button className="hover:bg-purple-600 dark:bg-white dark:text-purple-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-800 py-5 w-96 md:w-full bg-purple-800 text-base font-medium leading-4 text-white">
-                      Place Order
-                    </button>
+                    <Link className="w-full" to="/orders/payment">
+                      <button className="hover:bg-purple-600 dark:bg-white dark:text-purple-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-800 py-5 w-96 md:w-full bg-purple-800 text-base font-medium leading-4 text-white">
+                        Payment
+                      </button>
+                    </Link>
                   </div>
                 </div>
               </div>
