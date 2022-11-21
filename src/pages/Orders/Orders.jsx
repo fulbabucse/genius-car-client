@@ -18,7 +18,7 @@ const Orders = () => {
     queryKey: ["orders", "email", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/orders?email=${user?.email}`,
+        `https://genius-car-server-eta.vercel.app/orders?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("genius-token")}`,
@@ -37,7 +37,7 @@ const Orders = () => {
   const handleDeleteOrder = (id) => {
     const agree = window.confirm("Are you sure cancel this orders");
     if (agree) {
-      fetch(`http://localhost:5000/orders/${id}`, {
+      fetch(`https://genius-car-server-eta.vercel.app/orders/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("genius-token")}`,

@@ -6,18 +6,21 @@ const Users = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users", {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("genius-token")}`,
-        },
-      });
+      const res = await fetch(
+        "https://genius-car-server-eta.vercel.app/users",
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("genius-token")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data;
     },
   });
 
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
+    fetch(`https://genius-car-server-eta.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("genius-token")}`,
@@ -32,7 +35,7 @@ const Users = () => {
   };
 
   const handleRemoveAdmin = (id) => {
-    fetch(`http://localhost:5000/users/removeAdmin/${id}`, {
+    fetch(`https://genius-car-server-eta.vercel.app/users/removeAdmin/${id}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem("genius-token")}`,

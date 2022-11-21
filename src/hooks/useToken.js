@@ -5,7 +5,7 @@ export const useToken = (user) => {
 
   useEffect(() => {
     if (user) {
-      fetch("http://localhost:5000/jwt", {
+      fetch("https://genius-car-server-eta.vercel.app/jwt", {
         method: "POST",
         headers: {
           "content-type": "application/json",

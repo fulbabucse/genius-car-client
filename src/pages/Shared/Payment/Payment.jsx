@@ -15,7 +15,7 @@ const Payment = () => {
     queryKey: ["orders", "email", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/orders?email=${user?.email}`,
+        `https://genius-car-server-eta.vercel.app/orders?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem("genius-token")}`,
@@ -41,9 +41,7 @@ const Payment = () => {
   });
 
   const shipping = 10;
-
   const tax = subTotalPrice * 0.04;
-
   const totalPrice = subTotalPrice + shipping + Math.ceil(tax);
 
   return (
@@ -53,7 +51,7 @@ const Payment = () => {
         Shipping & Tax
       </h1>
       <Elements stripe={stripePromise}>
-        <CheckoutForm />
+        <CheckoutForm totalPrice={totalPrice} />
       </Elements>
     </div>
   );

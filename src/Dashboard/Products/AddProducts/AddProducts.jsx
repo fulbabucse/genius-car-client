@@ -16,7 +16,7 @@ const AddProducts = () => {
   const handleAddProductsForm = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://genius-car-server-eta.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

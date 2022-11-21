@@ -68,7 +68,7 @@ const Register = () => {
 
   const userInfoSaveDatabase = (name, email) => {
     const user = { name, email };
-    fetch("http://localhost:5000/users", {
+    fetch("https://genius-car-server-eta.vercel.app/users", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

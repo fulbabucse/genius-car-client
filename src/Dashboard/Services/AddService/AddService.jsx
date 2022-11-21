@@ -14,7 +14,7 @@ const AddService = () => {
   const handleAddServicesForm = (e) => {
     e.preventDefault();
     console.log(services);
-    fetch("http://localhost:5000/services", {
+    fetch("https://genius-car-server-eta.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",
