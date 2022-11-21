@@ -64,8 +64,9 @@ const Orders = () => {
   });
 
   const shipping = 10;
+  const tax = subTotalPrice * 0.04;
 
-  const totalPrice = subTotalPrice + shipping;
+  const totalPrice = subTotalPrice + shipping + Math.ceil(tax);
 
   return (
     <div>
@@ -106,6 +107,14 @@ const Orders = () => {
                       </p>
                       <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
                         {orders.length}
+                      </p>
+                    </div>
+                    <div className="flex justify-between items-center w-full">
+                      <p className="text-base dark:text-white leading-4 text-gray-800">
+                        Tax
+                      </p>
+                      <p className="text-base dark:text-gray-300 leading-4 text-gray-600">
+                        ${Math.ceil(tax)}
                       </p>
                     </div>
                     <div className="flex justify-between items-center w-full">
